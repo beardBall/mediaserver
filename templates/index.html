@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Media Server</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body class="p-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3>Media Server</h3>
+      <div>
+        <a href="/logout" class="btn btn-sm btn-outline-secondary">Logout</a>
+      </div>
+    </div>
+    {% if not base_exists %}
+    <div class="alert alert-warning">Base media directory not found: <code>{{ base_dir }}</code></div>
+    {% else %}
+    <div class="list-group">
+      {% for c in categories %}
+      <a class="list-group-item list-group-item-action" href="/browse/{{ c.path }}">{{ c.name }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </body>
+</html>
