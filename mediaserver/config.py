@@ -21,6 +21,15 @@ FLASK_SECRET = "dev-secret-change-me"
 # Port the app will listen on
 PORT = 5000
 
+# Streaming/transcoding settings
+USE_FFMPEG_STREAMING = True  # Set False to fallback to plain file streaming
+FFMPEG_BIN = "ffmpeg"
+FFMPEG_MAX_HEIGHT = 720  # Limit height to reduce bandwidth (keeps aspect ratio)
+FFMPEG_VIDEO_BITRATE = "3500k"
+FFMPEG_AUDIO_BITRATE = "128k"
+FFMPEG_PRESET = "veryfast"
+FFMPEG_CHUNK_SIZE = 64 * 1024
+
 
 def apply_to_app(app):
     """Apply these config values into a Flask `app.config` mapping.
@@ -33,3 +42,10 @@ def apply_to_app(app):
     app.config["TVDB_API_KEY"] = TVDB_API_KEY
     app.config["FLASK_SECRET"] = FLASK_SECRET
     app.config["PORT"] = PORT
+    app.config["USE_FFMPEG_STREAMING"] = USE_FFMPEG_STREAMING
+    app.config["FFMPEG_BIN"] = FFMPEG_BIN
+    app.config["FFMPEG_MAX_HEIGHT"] = FFMPEG_MAX_HEIGHT
+    app.config["FFMPEG_VIDEO_BITRATE"] = FFMPEG_VIDEO_BITRATE
+    app.config["FFMPEG_AUDIO_BITRATE"] = FFMPEG_AUDIO_BITRATE
+    app.config["FFMPEG_PRESET"] = FFMPEG_PRESET
+    app.config["FFMPEG_CHUNK_SIZE"] = FFMPEG_CHUNK_SIZE
